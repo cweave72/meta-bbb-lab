@@ -35,4 +35,3 @@ IMAGE_INSTALL:append = " \
   ${EXTRA_TOOLS} \
 "
 
-
