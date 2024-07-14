@@ -13,6 +13,7 @@ EXTRA_TOOLS = " \
     iperf3 \
     tcpdump \
     ethtool \
+    nmap \
     zip \
     socat \
     netcat \
