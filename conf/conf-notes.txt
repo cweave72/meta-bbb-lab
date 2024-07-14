@@ -1,0 +1,9 @@
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+
+    core-image-lab      : Custom image with tools for lab use (based on core-image).
+    core-image-minimal  : Basic image for sanity check.
