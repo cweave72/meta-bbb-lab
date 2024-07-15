@@ -16,11 +16,12 @@ This layer depends on:
 
 ## USB interface notes
 
+### BeagleBone side
+
 The g_ether (gadget) driver is configured to assign the following MAC addresses:
 
-MAC addresses:
-host:   `c0:00:20:35:44:00`
-device: `c0:00:20:35:44:01`
+- host:   `c0:00:20:35:44:00`
+- device: `c0:00:20:35:44:01`
 
 This is configured in the layer.conf:
 ```
@@ -31,28 +32,27 @@ module_conf_g_ether = "options g_ether dev_addr=c0:00:20:35:44:01 host_addr=c0:0
 ```
 
 `/etc/network/interfaces` is configured to set the device-side ip to: `192.168.7.2`
+
 The host should set it's interface to something: `192.168.7.x`
 
-### Connecting via USB to a host
-
-Host side:
+### Host side
 
 Create a udev rule: `/etc/udev/rules.d/70-persistent-net.rules`:
 ```
 ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="c0:00:20:35:44:00", NAME="usb_bbb", RUN+="/opt/bbb/on_connect.sh"
 ```
 
-Then:
+Restart udev:
 ```bash
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-On connection, the network interface will be named `usb_bbb` and the
-/opt/bbb/on_connect.sh script will run. The on_connect.sh script will assign the
-IP address to the interface.
+On connection, the udev rule will run and the network interface will be renamed
+`usb_bbb` and the `/opt/bbb/on_connect.sh` script will run. The *on_connect.sh*
+script will assign the IP address to the interface.
 
-on_connect.sh:
+Contents of *on_connect.sh*:
 ```bash
 #!/bin/sh
 
