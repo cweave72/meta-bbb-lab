@@ -11,6 +11,7 @@ MACHINE = "beaglebone-yocto"
 PACKAGE_CLASSES ?= "package_ipk"
 
 INIT_MANAGER = "sysvinit"
+# Mask recipes which are intended for systemd init manager (sysvinit is simpler).
 BBMASK += "/meta-bbb-lab/recipes-core/systemd/systemd_%.bbappend"
 BBMASK += "/meta-bbb-lab/recipes-core/systemd-conf/systemd_conf%.bbappend"
 

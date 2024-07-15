@@ -1,0 +1,2 @@
+This build configuration provides a Yocto lab image for Beaglebone Black.
+
